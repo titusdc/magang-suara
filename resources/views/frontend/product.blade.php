@@ -26,8 +26,11 @@
                         <h3>{{ $product->title }}</h3>
                         <hr/>
                         <p>{{ "Rp" . number_format($product->price,2,',','.') }}</p>
-                        <a href="{{ url('/checkout',$product->id) }}">
-                            <button type="button" class="text-black bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2">BUY</button>
+                        <a href="{{ url('/checkout') }}">
+                          <button type="button" class="text-black bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2">BUY</button>
+                        </a>
+                          <a href="{{ url('/cart',$product->id) }}">
+                            <button type="button" class="text-black  bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2">CART</button>
                           </a>
                         <div class="product-description">
                             <div>{!! nl2br($product->description) !!}</div>

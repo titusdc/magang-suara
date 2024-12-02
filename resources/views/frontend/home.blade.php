@@ -120,7 +120,7 @@
                   </span>
                 </h6>
               </div>
-              <a href="{{ url('/checkout',$product->id) }}">
+              <a href="{{ url('/checkout') }}">
                 <button type="button" class="text-black bg-blue-900 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2.5 me-2 mb-2">BUY</button>
               </a>
                 <a href="{{ url('/cart',$product->id) }}">

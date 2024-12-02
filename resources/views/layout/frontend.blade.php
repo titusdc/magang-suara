@@ -95,7 +95,7 @@
                 Login
               </span>
             </a>
-            <a href="{{ url('/cart/index') }}">
+            <a href="{{ url('/listcart') }}">
               <i class="fa fa-shopping-bag" aria-hidden="true"></i>
             </a>
             <form class="form-inline ">
