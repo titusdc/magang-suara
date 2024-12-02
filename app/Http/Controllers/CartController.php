@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\product;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 
 class CartController extends Controller
@@ -10,20 +12,17 @@ class CartController extends Controller
     public function cart($id)
     {
         $product = product::findOrFail($id);
-     return view('cart.index', compact('product'));
+     return view('frontend.cart', compact('product'));
     }
 
-    public function removeFromCart(Request $request, $productid)
+    public function removeFromCart($id)
     {
-        $cart = session()->get('cart');
+        $carts = Cart::findOrFail($id);
 
-        if (isset($cart[$productid])) 
-        {
-            // Hapus item dari keranjang
-            unset($cart[$productid]);   
-            session()->put('cart',$cart);
-            return redirect()->route('cart.index')->with('success', 'Product removed from cart successfully!');
-        }
+        //delete product
+        $carts->delete();
+
+        return redirect()->route('listcart')->with('success', 'Product added to cart successfully!');
     }
 
    public function addToCart(Request $request)
@@ -35,12 +34,18 @@ class CartController extends Controller
         return redirect()->route('products.index')->with('error', 'Product not found!');
     }
     // Tambahkan produk ke keranjang 
-    $cart    =   session()->get('cart',[]);
-    $cart[$productid]    =   [
-         'name'  =>  $product->name,
-         'price' =>  $product->price,
-    ];
-    session()->put('cart',$cart);
-    return redirect()->route('products.index')->with('success', 'Product added to cart successfully!');
+    Cart::create([
+        'product_id'         => $request->product_id,
+        'jumlah'             => $request->jumlah,
+    ]);
+    return redirect()->route('listcart')->with('success', 'Product added to cart successfully!');
    }
+
+   public function listCart()
+   {
+    $carts = Cart::latest()->get();
+    
+    return view('frontend.listcart',compact('carts'));
+   }
+   
 }

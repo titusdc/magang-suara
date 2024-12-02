@@ -26,11 +26,6 @@
                 <a href="{{ url('/checkout',$product->id) }}">
                     <button class="checkout">Checkout</button>
                 </a>
-                <form action="{{ route('cart.add') }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="product_id" value="{{ $product->id }}">
-                    <button type="submit" class="btn btn-warning btn-block">Add to cart</button>
-                </form>
                 
                 <form action="{{ route('cart.remove', $product->id) }}" method="POST">
                     @csrf

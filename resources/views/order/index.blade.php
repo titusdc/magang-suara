@@ -5,7 +5,6 @@
             <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
                 <thead>
                     <tr>
-                        <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Product_id</th>
                         <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Name</th>
                         <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left">Email</th>
                         <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-left rounded-tl-md rounded-bl-md">Number</th>
@@ -18,9 +17,6 @@
                 <tbody>
                     @forelse ($orders as $order)
                     <tr>
-                        <td class="py-2 px-4 border-b border-b-gray-50">
-                            {{ $order->product_id }}
-                        </td>
                         <td class="py-2 px-4 border-b border-b-gray-50">
                             {{ $order->name }}
                         </td>

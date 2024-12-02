@@ -22,6 +22,11 @@
         <div class="mb-3 d-grid">
             <button name="submit" type="submit" class="btn btn-primary">Login</button>
         </div>
-    </form>
+        <a href="{{ url('/sesi/register') }}">
+            <div class="mb-3 d-grid">
+                    <button name="button" type="button" class="btn btn-primary">Register</button>
+            </div>
+        </a>
+        </form>
     </div>
 @endsection

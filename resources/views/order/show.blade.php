@@ -32,7 +32,6 @@
             <div class="col-md-8">
                 <div class="card border-0 shadow-sm rounded">
                     <div class="card-body">
-                        <p> Product_id  :  {{ $orders->product_id }}</p>
                         <p> Name        :  {{ $orders->name }} </p>
                         <p> Email       :  {{ $orders->email }}</p>
                         <p> Number      :  {{ $orders->number }}</p>
@@ -42,6 +41,47 @@
                 </th>
     </tr>
 </tbody>
+                </div>
+            </div>
+        </div>
+        <div class="card border-0 shadow-sm rounded">
+            <div class="card-body">
+                <table class="w-full min-w-[540px]" data-tab-for="order" data-page="active">
+                    <thead>
+                        <tr>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center rounded-tl-md rounded-bl-md">Image</th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center">Title</th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center rounded-tl-md rounded-bl-md">Category</th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center">Type</th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center rounded-tl-md rounded-bl-md">Price</th>
+                            <th class="text-[12px] uppercase tracking-wide font-medium text-gray-400 py-2 px-4 bg-gray-50 text-center">Jumlah</th>
+                            
+                        </tr>
+                    </thead>
+                        <tbody>
+                            @forelse ($orders->items as $item)
+                                <tr>
+                                    <td class="text-center">
+                                        <img src="{{ asset('/storage/products/'.$item->product?->image) }}" class="rounded" style="width: 150px">
+                                    </td>
+                                    <td class="text-center">{{ $item->product?->title }}</td>
+                                    <td class="text-center">{{ $item->product?->category?->title }}</td>
+                                    <td class="text-center">{{ $item->product?->type?->title }}
+                                    </td>
+                                    <td class="text-center">{{ "Rp " . number_format($item->product?->price,2,',','.') }}</td>
+                                    <td class="text-center">{{ $item->jumlah }}</td>
+                                    
+                                </tr>
+                            @empty
+                                <div class="alert alert-danger">
+                                    Data Products belum Tersedia.
+                                </div>
+                            @endforelse
+                        </tbody>
+                    </table>
+                        
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

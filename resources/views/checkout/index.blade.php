@@ -1,11 +1,9 @@
 @extends('layout.frontend')
 @section('body')
 
+<section class="contact_section ">
 <form action="{{ url('/order') }}" method="POST" enctype="multipart/form-data">
     @csrf
-    <div>
-      <input type="product_id" placeholder="Product_id" name='product_id' />
-    </div>
     <div>
       <input type="text" placeholder="Name" name='name' />
     </div>
@@ -27,4 +25,5 @@
       </button>
     </div>
   </form>
+</section>
   @endsection

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cart;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\product;
 use Illuminate\Http\Request;
 
@@ -13,23 +15,32 @@ class OrderController extends Controller
     {
         //validate form
         $request->validate([
-            'product_id'    => 'required',
             'name'          => 'required',
             'email'         => 'required',
             'number'        => 'required',
             'addres'        => 'required',
             'notes'         => 'required'
         ]);
-
         //upload image
-        Order::create([
-            'product_id'    => $request->product_id,
-            'name'          => $request->name,
-            'email'         => $request->email,
-            'number'        => $request->number,
-            'addres'        => $request->addres,
-            'notes'         => $request->notes,
-        ]);
+        $order = new Order;
+ 
+        $order->name    =  $request->name;
+        $order->email   =  $request->email;
+        $order->number  =   $request->number;
+        $order->addres  =   $request->addres;
+        $order->notes   =   $request->notes;
+        $order->save();
+        
+        $carts = Cart::query()->get();
+        foreach ($carts as $cart)
+        {
+            OrderItem::create([
+                'order_id'  => $order->id,
+                'product_id'=> $cart->product_id,
+                'jumlah'    => $cart->jumlah,
+            ]);
+        }
+        
 
         //redirect to index
         return redirect()->back()->with(['success' => 'Data Berhasil Disimpan!']);

@@ -15,12 +15,17 @@ use Symfony\Component\HttpKernel\Profiler\Profile;
 Route::get('/',[HomeController::class,'home']);
 Route::get('/detail-category/{id}',[HomeController::class,'category']);
 Route::get('/detail-product/{id}',[HomeController::class,'product']);
+
+Route::get('/listcart',[CartController::class,'listcart'])->name('listcart');
 Route::get('/cart/{id}',[CartController::class,'cart']);
-Route::post('/cart/remove/{productId}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::get('/cart/remove/{id}', [CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-Route::get('/checkout/{id}',[CheckoutController::class,'checkout']);
+
+Route::get('/checkout',[CheckoutController::class,'checkout']);
+
 Route::post('/contact',[ContactController::class,'store']);
 Route::get('/contact/index',[ContactController::class,'index']);
+
 Route::post('/order',[OrderController::class,'store']);
 Route::get('/order/index',[OrderController::class,'index']);
 
@@ -45,7 +50,7 @@ Route::post('/setting',[ProfileController::class,'setting'])->middleware('isLogi
 
 Route::resource('/contact',\App\Http\Controllers\Frontend\ContactController::class);
 Route::resource('/order', \App\Http\Controllers\Frontend\OrderController::class);
-Route::resource('/carts',\App\Http\Controllers\Frontend\HomeController::class);
+
 // Route::get('products',[ProductController::class,'index']);
 // Route::get('products/{id}',[ProductController::class,'detail'])->where('id','[0-9]+');
 

@@ -7,9 +7,9 @@ use Illuminate\Http\Request;
 
 class CheckoutController extends Controller
 {
-    public function checkout($id)
+    public function checkout()
     {
-        $product = product::findOrFail($id);
-     return view('checkout.index', compact('product'));
+        
+     return view('checkout.index');
     }
 }
